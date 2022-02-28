@@ -1,0 +1,65 @@
+# Se importa el modulo de coleccciones namdetuple para
+# empezar a hacer uso de dichos modulos.
+from collections import namedtuple
+
+# Empezamos a crear un diccionario donde guardaremos las tuplas
+# nominadas para poderlas llamas depues.
+diccionario_registro = {}
+
+# Creamos una tumpla con el nombre Registro, le iremos pasando los datos
+# para poder utilizarlos al llamar.
+Registro = namedtuple("Registro",("Fecha", "Nombre", "Servicio", "Equipos"))
+
+
+# Usamos la lista para guardar la variable que tiene las tuplas.
+lista_registro = list()
+clave = 1
+
+while True:
+    print("\n---------Menu---------")
+    print("1-Registar un servicio")
+    print("2-Consultar un servicio mediante el folio")
+    print("3-Consultar servicios en fecha especifica")
+    print("4-Salir")
+    opcion = int(input("Ingrese una opcion: "))
+    if opcion  == 1:
+        fecha = input("Ingrese la fecha: ")
+        nombre = input("Ingrese su nombre: ")
+        servicio = input("Descripcion del servicio: ")
+        equipo = input("Descripcion del equipo: ")
+        otro = input("¿Desea ingresar otro equipo?: ")
+            
+        # Variable que almacena los registros de las variables que iran dentro
+        # de la tupla nominada.
+        registro = Registro(fecha, nombre, servicio, equipo)
+        
+        # Aqui vamos definiendo las claves para que nos vaya dando
+        # un folio unico para cada registro
+        if diccionario_registro.keys():
+            clave = max(diccionario_registro.keys())+1
+        else:
+            clave = 1
+        diccionario_registro[clave] = registro
+        print("¡Registro exitoso!")
+        for llave in diccionario_registro:
+            print(f"Este es tu folio: {llave}")
+            print(f"Fecha del registro: {fecha}")
+                
+    if opcion == 2:
+        llave = int(input("Ingrese el folio: "))
+        print("-" * 50)
+        # Tabulamos y devolvemos los registros
+        print(f"Fecha del registro: {diccionario_registro[llave].Fecha}\t\tNombre del cliente:{registro.Nombre}")
+        print(f"Descripcion del servicio: {registro.Servicio}\t\tDescripcion del equipo: {registro.Equipos}")
+        print("-" * 50)
+        
+        
+    if opcion == 3:
+        fecha = input("Ingrese la fecha: ")
+        print("-" * 50)
+        print(f"Fecha del registro: {diccionario_registro[llave].Fecha}\t\tNombre del cliente:{registro.Nombre}")
+        print(f"Descripcion del servicio: {registro.Servicio}\t\tDescripcion del equipo: {registro.Equipos}")
+        print("-" * 50)
+        
+    if opcion == 4:
+        break
